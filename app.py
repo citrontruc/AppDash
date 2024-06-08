@@ -46,10 +46,10 @@ color_mode_switch =  html.Span(
 # We define our app layout.
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.FONT_AWESOME])
 app.layout = html.Div([
+    color_mode_switch, 
     html.H1("Analysis of the views of song lyrics according to Genius Website", ),
     html.H3(children = 'Band Selection', style={'backgroundColor': desc_style['background'], 'color': desc_style['text']}),
     dcc.Dropdown(id="band-selection", options=band_df["band_name"].unique(), value=["Architects", "STARSET", "Poets of the Fall", "CHVRCHES"], clearable=True, multi=True, placeholder="Select bands (by default, no bands are selected)"),
-    color_mode_switch,    
     html.Table([html.Tr([html.Th('Smallest Date |'), html.Th('Biggest Date')]),
                 html.Tr([html.Td(id='value-1'),html.Td(id='value-2')])]),
     html.Div(id='filter-display', style={'backgroundColor': desc_style['background'], 'color': desc_style['text'], 'textAlign': 'left'}),
