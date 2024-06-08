@@ -43,7 +43,7 @@ fig = make_subplots(rows=2, cols=3, specs=[[{}, {"rowspan" : 2, "colspan" : 2, "
 # We define our app layout.
 app = Dash()
 app.layout = html.Div([
-    html.H1("Top songs analysis", style={'backgroundColor': title_style['background'], 'color': title_style['text']}),
+    html.H1("Analysis of the views of song lyrics according to Genius Website", style={'backgroundColor': title_style['background'], 'color': title_style['text']}),
     html.H3(children = 'Band Selection', style={'backgroundColor': desc_style['background'], 'color': desc_style['text']}),
     dcc.Dropdown(id="band-selection", options=band_df["band_name"].unique(), value=["Architects", "STARSET", "Poets of the Fall", "CHVRCHES"], clearable=True, multi=True, placeholder="Select bands (by default, no bands are selected)"),
     html.Table([html.Tr([html.Th('Smallest Date |'), html.Th('Biggest Date')]),

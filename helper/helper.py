@@ -70,6 +70,7 @@ def generate_all_plot(pandas_band_df, pandas_song_df):
     # We need to generate a list of scatter plots which will then be added to our subplot
     list_scatter_plot = []
     for unique_band in song_count_df["band_name"].unique():
+        # Not all years are represented. We have to fill in the missing years
         one_band_df = song_count_df.loc[song_count_df["band_name"] == unique_band]
         year_list = one_band_df["year"].to_list()
         year_list = [int(element) for element in year_list]
@@ -81,5 +82,9 @@ def generate_all_plot(pandas_band_df, pandas_song_df):
                 num_song_per_year_list.append(num_song_list[year_list.index(unique_year)])
             else:
                 num_song_per_year_list.append(0)
-        list_scatter_plot.append(go.Scatter(x=year_to_include, y=num_song_per_year_list, mode="lines", marker={"color" : one_band_df["colour"].iloc[0]}, showlegend=False))
+        list_scatter_plot.append(go.Scatter(x=year_to_include, y=num_song_per_year_list, mode="lines", marker={"color" : one_band_df["colour"].iloc[0]}, showlegend=False,
+                                             hovertemplate='<b>Band</b>: %{customdata[0]}<br>' +
+                                      '<b>Year</b>: %{customdata[1]}<br>' +
+                                      '<b>Number of songs</b>: %{customdata[2]}<br>',
+                                      customdata=[(unique_band, year_to_include[i], num_song_per_year_list[i]) for i in range(len(year_to_include))]))
     return song_count_bar, most_popular_song_bar, list_scatter_plot
