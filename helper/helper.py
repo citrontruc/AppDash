@@ -82,7 +82,7 @@ def generate_all_plot(pandas_band_df, pandas_song_df):
                 num_song_per_year_list.append(num_song_list[year_list.index(unique_year)])
             else:
                 num_song_per_year_list.append(0)
-        list_scatter_plot.append(go.Scatter(x=year_to_include, y=num_song_per_year_list, mode="lines", marker={"color" : one_band_df["colour"].iloc[0]}, showlegend=False,
+        list_scatter_plot.append(go.Scatter(x=year_to_include, y=num_song_per_year_list, mode="lines", marker={"color" : one_band_df["colour"].iloc[0]}, showlegend=True, name=unique_band,
                                              hovertemplate='<b>Band</b>: %{customdata[0]}<br>' +
                                       '<b>Year</b>: %{customdata[1]}<br>' +
                                       '<b>Number of songs</b>: %{customdata[2]}<br>',
